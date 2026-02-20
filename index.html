@@ -10,7 +10,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: 'Segoe UI', sans-serif;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
@@ -19,20 +19,19 @@ body{
     overflow-x:hidden;
 }
 
-/* ===== Scroll Animation Canvas ===== */
-#scroll-animation{
+/* ===== CANVAS BACKGROUND ===== */
+#animation-canvas{
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    object-fit:cover;
     z-index:-1;
-    opacity:0.08;   /* watermark effect */
+    opacity:0.07;   /* watermark style */
     pointer-events:none;
 }
 
-/* ===== Main Container ===== */
+/* ===== Layout ===== */
 .container{
     width:85%;
     max-width:1100px;
@@ -40,10 +39,9 @@ body{
     padding:80px 0;
 }
 
-/* ===== Glass Section ===== */
 .section{
     background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(8px);
+    backdrop-filter:blur(10px);
     padding:40px;
     margin-bottom:40px;
     border-radius:15px;
@@ -56,78 +54,36 @@ body{
     box-shadow:0 10px 30px rgba(0,0,0,0.6);
 }
 
-h1{
-    font-size:42px;
-    margin-bottom:10px;
-}
-
-h2{
-    color:#00f0ff;
-    margin-bottom:15px;
-    border-bottom:2px solid rgba(255,255,255,0.2);
-    padding-bottom:5px;
-}
-
-h3{
-    margin-top:15px;
-    color:#00f0ff;
-}
-
-p{
-    margin:8px 0;
-    line-height:1.6;
-}
-
-ul{
-    margin-top:10px;
-    padding-left:20px;
-}
-
-li{
-    margin-bottom:8px;
-}
-
-/* Contact Links */
-a{
-    color:#00f0ff;
-    text-decoration:none;
-}
-
-a:hover{
-    text-decoration:underline;
-}
-
-/* Hero Section */
 .hero{
     text-align:center;
     padding-top:120px;
     padding-bottom:120px;
 }
 
-.hero h1{
-    font-size:50px;
-}
+h1{font-size:48px;}
+h2{color:#00f0ff;margin-bottom:15px;}
+h3{margin-top:15px;color:#00f0ff;}
+p{margin:8px 0;line-height:1.6;}
+ul{padding-left:20px;}
+li{margin-bottom:8px;}
 
-.hero p{
-    font-size:20px;
-    opacity:0.8;
-}
+a{color:#00f0ff;text-decoration:none;}
+a:hover{text-decoration:underline;}
 
 footer{
     text-align:center;
     padding:30px;
     opacity:0.6;
 }
-
 </style>
 </head>
+
 <body>
 
-<img id="scroll-animation" src="frames/ezgif-frame-001.jpg">
+<canvas id="animation-canvas"></canvas>
 
 <div class="container">
 
-<!-- HERO -->
 <div class="hero section">
     <h1>SESHU GANESH.B</h1>
     <p>Electronics Engineering Student | Embedded Systems & Automotive R&D Aspirant</p>
@@ -139,97 +95,131 @@ footer{
     </p>
 </div>
 
-<!-- PROFESSIONAL SUMMARY -->
 <div class="section">
     <h2>Professional Summary</h2>
     <p>
         Dedicated Electronics and Communication Engineering student with a CGPA of 8.7 
         and strong interest in embedded systems and automotive safety technologies.
-        Hands-on experience in developing real-time embedded and image processing projects individually.
-        Awarded 1st Prize in inter-college technical paper presentations.
-        Seeking an internship opportunity to apply technical skills and contribute to innovative automotive solutions.
+        Hands-on experience in real-time embedded and image processing projects.
+        Awarded 1st Prize in technical paper presentations.
+        Seeking internship opportunities in automotive R&D and embedded systems.
     </p>
 </div>
 
-<!-- EDUCATION -->
 <div class="section">
     <h2>Education</h2>
     <h3>B.E. Electronics and Communication Engineering</h3>
-    <p>Government College Of Engineering, Tirunelveli, Tamil Nadu</p>
-    <p><strong>CGPA:</strong> 8.7 (Up to 5th Semester)</p>
+    <p>Government College Of Engineering, Tirunelveli</p>
+    <p><strong>CGPA:</strong> 8.7</p>
     <p><strong>Expected Graduation:</strong> June 2027</p>
 </div>
 
-<!-- PROJECT EXPERIENCE -->
 <div class="section">
     <h2>Project Experience</h2>
 
     <h3>Sleep Alert Glasses</h3>
     <ul>
-        <li>Designed and developed a driver drowsiness detection system to enhance road safety.</li>
-        <li>Implemented alert mechanism using sensor-based detection.</li>
-        <li>Secured 1st Prize at PSN College Of Engineering (20 September 2024).</li>
+        <li>Driver drowsiness detection system for road safety.</li>
+        <li>Sensor-based alert mechanism.</li>
+        <li>1st Prize at PSN College Of Engineering.</li>
     </ul>
 
-    <h3>Automatic Plant Watering System (Simulation – Keil)</h3>
+    <h3>Automatic Plant Watering System</h3>
     <ul>
-        <li>Designed automated irrigation system using microcontroller logic.</li>
-        <li>Simulated soil moisture detection and water control system using Keil software.</li>
-        <li>Implemented control logic for efficient water usage.</li>
+        <li>Automated irrigation system using microcontroller logic.</li>
+        <li>Simulated using Keil software.</li>
     </ul>
 
     <h3>Vehicle Number Plate Detection</h3>
     <ul>
-        <li>Developed number plate detection system using image processing techniques.</li>
-        <li>Implemented using Python and OpenCV for vehicle identification.</li>
+        <li>Image processing based detection.</li>
+        <li>Implemented using Python & OpenCV.</li>
     </ul>
 </div>
 
-<!-- TECHNICAL SKILLS -->
 <div class="section">
     <h2>Technical Skills</h2>
     <ul>
-        <li><strong>Programming:</strong> C, Python</li>
-        <li><strong>Embedded Systems:</strong> Microcontroller Programming, Sensor Interfacing</li>
-        <li><strong>Tools & Software:</strong> Keil, Arduino IDE, OpenCV, Power BI</li>
-        <li><strong>Core Subjects:</strong> Analog & Digital Electronics, Microcontrollers, Circuit Analysis</li>
-        <li><strong>Soft Skills:</strong> Problem Solving, Analytical Thinking, Technical Presentation, Self-motivated Learner</li>
+        <li>C, Python</li>
+        <li>Microcontrollers & Sensor Interfacing</li>
+        <li>Keil, Arduino IDE, OpenCV, Power BI</li>
+        <li>Analog & Digital Electronics</li>
     </ul>
 </div>
 
-<!-- CERTIFICATIONS -->
 <div class="section">
     <h2>Certifications & Achievements</h2>
     <ul>
-        <li>Secured CGPA of 8.7 up to 5th semester.</li>
-        <li>Won 1st Prize in Paper Presentation at two inter-college technical symposiums in Tirunelveli.</li>
-        <li>NPTEL Certification – Introduction to Graphic Design (61%).</li>
-        <li>NIELIT Certification – Data Analytics using Power BI.</li>
+        <li>CGPA 8.7 (Up to 5th semester)</li>
+        <li>1st Prize in inter-college symposiums</li>
+        <li>NPTEL – Graphic Design</li>
+        <li>NIELIT – Data Analytics using Power BI</li>
     </ul>
 </div>
 
 <footer>
-    © 2026 Seshu Ganesh | Embedded Systems Portfolio
+© 2026 Seshu Ganesh | Embedded Portfolio
 </footer>
 
 </div>
 
 <script>
-const frameCount = 240;
-const img = document.getElementById("scroll-animation");
+const canvas = document.getElementById("animation-canvas");
+const context = canvas.getContext("2d");
 
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const frameCount = 240;
+const images = [];
+let currentFrame = 0;
+let targetFrame = 0;
+
+/* ===== Preload Frames ===== */
+for (let i = 1; i <= frameCount; i++) {
+    const img = new Image();
+    const frameNumber = String(i).padStart(3, '0');
+    img.src = `frames/ezgif-frame-${frameNumber}.jpg`;
+    images.push(img);
+}
+
+/* ===== Resize Fix ===== */
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+/* ===== Scroll Control ===== */
 window.addEventListener("scroll", () => {
     const scrollTop = document.documentElement.scrollTop;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     const scrollFraction = scrollTop / maxScroll;
-    const frameIndex = Math.min(
-        frameCount - 1,
-        Math.floor(scrollFraction * frameCount)
-    );
-
-    const frameNumber = String(frameIndex + 1).padStart(3, '0');
-    img.src = `frames/ezgif-frame-${frameNumber}.jpg`;
+    targetFrame = scrollFraction * (frameCount - 1);
 });
+
+/* ===== Smooth Animation Loop ===== */
+function animate() {
+
+    // Smooth interpolation
+    currentFrame += (targetFrame - currentFrame) * 0.08;
+
+    // Slight continuous motion
+    currentFrame += 0.02;
+
+    if (currentFrame >= frameCount - 1) currentFrame = 0;
+
+    const frameIndex = Math.floor(currentFrame);
+    const img = images[frameIndex];
+
+    if (img.complete) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+    }
+
+    requestAnimationFrame(animate);
+}
+
+images[0].onload = animate;
 </script>
 
 </body>
