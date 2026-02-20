@@ -14,7 +14,7 @@
 }
 
 body{
-    background:#f5f8fb;   /* LIGHT BACKGROUND */
+    background:linear-gradient(to bottom,#f4f8ff,#eaf1ff);
     color:#111;
     overflow-x:hidden;
 }
@@ -28,18 +28,7 @@ body{
     height:100%;
     z-index:-1;
     pointer-events:none;
-    filter: grayscale(100%) blur(6px);
-}
-
-/* Soft white overlay */
-.overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(255,255,255,0.7);
-    z-index:-1;
+    filter: grayscale(100%) blur(4px);
 }
 
 /* ===== Layout ===== */
@@ -51,12 +40,11 @@ body{
 }
 
 .section{
-    background:rgba(255,255,255,0.85);
-    backdrop-filter:blur(6px);
+    background:rgba(255,255,255,0.92);
     padding:40px;
     margin-bottom:40px;
-    border-radius:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.05);
+    border-radius:14px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.06);
     transition:0.3s;
 }
 
@@ -70,13 +58,13 @@ body{
 }
 
 h1{font-size:48px;}
-h2{color:#0077ff;margin-bottom:15px;}
-h3{margin-top:15px;color:#0077ff;}
+h2{color:#0066ff;margin-bottom:15px;}
+h3{margin-top:15px;color:#0066ff;}
 p{margin:8px 0;line-height:1.6;}
 ul{padding-left:20px;}
 li{margin-bottom:8px;}
 
-a{color:#0077ff;text-decoration:none;}
+a{color:#0066ff;text-decoration:none;}
 a:hover{text-decoration:underline;}
 
 footer{
@@ -90,7 +78,6 @@ footer{
 <body>
 
 <canvas id="animation-canvas"></canvas>
-<div class="overlay"></div>
 
 <div class="container">
 
@@ -206,7 +193,7 @@ window.addEventListener("scroll", () => {
 
 function animate(){
     currentFrame += (targetFrame - currentFrame) * 0.08;
-    currentFrame += 0.01;
+    currentFrame += 0.015;
 
     if(currentFrame >= frameCount - 1) currentFrame = 0;
 
@@ -214,7 +201,7 @@ function animate(){
 
     if(img.complete){
         context.clearRect(0,0,canvas.width,canvas.height);
-        context.globalAlpha = 0.06;   /* LIGHT TRANSPARENT */
+        context.globalAlpha = 0.12;   /* Balanced visibility */
         context.drawImage(img,0,0,canvas.width,canvas.height);
         context.globalAlpha = 1;
     }
