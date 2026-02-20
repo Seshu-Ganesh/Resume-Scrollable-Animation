@@ -14,12 +14,12 @@
 }
 
 body{
-    background:#0f0f0f;
+    background:#0b0f14;
     color:white;
     overflow-x:hidden;
 }
 
-/* ===== CANVAS BACKGROUND ===== */
+/* ===== WATERMARK CANVAS ===== */
 #animation-canvas{
     position:fixed;
     top:0;
@@ -27,8 +27,8 @@ body{
     width:100%;
     height:100%;
     z-index:-1;
-    opacity:0.07;   /* watermark style */
     pointer-events:none;
+    filter: blur(8px) brightness(60%) contrast(80%);
 }
 
 /* ===== Layout ===== */
@@ -40,34 +40,33 @@ body{
 }
 
 .section{
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(10px);
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(12px);
     padding:40px;
     margin-bottom:40px;
-    border-radius:15px;
-    box-shadow:0 0 20px rgba(0,0,0,0.4);
+    border-radius:18px;
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
     transition:0.4s;
 }
 
 .section:hover{
-    transform:translateY(-5px);
-    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    transform:translateY(-6px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.6);
 }
 
 .hero{
     text-align:center;
-    padding-top:120px;
-    padding-bottom:120px;
+    padding:120px 0;
 }
 
-h1{font-size:48px;}
-h2{color:#00f0ff;margin-bottom:15px;}
-h3{margin-top:15px;color:#00f0ff;}
+h1{font-size:50px;}
+h2{color:#00eaff;margin-bottom:15px;}
+h3{margin-top:15px;color:#00eaff;}
 p{margin:8px 0;line-height:1.6;}
 ul{padding-left:20px;}
 li{margin-bottom:8px;}
 
-a{color:#00f0ff;text-decoration:none;}
+a{color:#00eaff;text-decoration:none;}
 a:hover{text-decoration:underline;}
 
 footer{
@@ -175,7 +174,7 @@ const images = [];
 let currentFrame = 0;
 let targetFrame = 0;
 
-/* ===== Preload Frames ===== */
+/* ===== Preload Images ===== */
 for (let i = 1; i <= frameCount; i++) {
     const img = new Image();
     const frameNumber = String(i).padStart(3, '0');
@@ -183,13 +182,11 @@ for (let i = 1; i <= frameCount; i++) {
     images.push(img);
 }
 
-/* ===== Resize Fix ===== */
 window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 });
 
-/* ===== Scroll Control ===== */
 window.addEventListener("scroll", () => {
     const scrollTop = document.documentElement.scrollTop;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -197,14 +194,10 @@ window.addEventListener("scroll", () => {
     targetFrame = scrollFraction * (frameCount - 1);
 });
 
-/* ===== Smooth Animation Loop ===== */
 function animate() {
 
-    // Smooth interpolation
     currentFrame += (targetFrame - currentFrame) * 0.08;
-
-    // Slight continuous motion
-    currentFrame += 0.02;
+    currentFrame += 0.01;
 
     if (currentFrame >= frameCount - 1) currentFrame = 0;
 
@@ -213,7 +206,11 @@ function animate() {
 
     if (img.complete) {
         context.clearRect(0, 0, canvas.width, canvas.height);
+
+        /* TRUE transparency control */
+        context.globalAlpha = 0.05;   // 🔥 VERY transparent watermark
         context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        context.globalAlpha = 1;
     }
 
     requestAnimationFrame(animate);
