@@ -14,12 +14,12 @@
 }
 
 body{
-    background:#0b0f14;
-    color:white;
+    background:#f5f8fb;   /* LIGHT BACKGROUND */
+    color:#111;
     overflow-x:hidden;
 }
 
-/* ===== WATERMARK CANVAS ===== */
+/* ===== CANVAS BACKGROUND ===== */
 #animation-canvas{
     position:fixed;
     top:0;
@@ -28,7 +28,18 @@ body{
     height:100%;
     z-index:-1;
     pointer-events:none;
-    filter: blur(8px) brightness(60%) contrast(80%);
+    filter: grayscale(100%) blur(6px);
+}
+
+/* Soft white overlay */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.7);
+    z-index:-1;
 }
 
 /* ===== Layout ===== */
@@ -40,18 +51,17 @@ body{
 }
 
 .section{
-    background:rgba(255,255,255,0.06);
-    backdrop-filter:blur(12px);
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(6px);
     padding:40px;
     margin-bottom:40px;
-    border-radius:18px;
-    box-shadow:0 0 25px rgba(0,0,0,0.4);
-    transition:0.4s;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.05);
+    transition:0.3s;
 }
 
 .section:hover{
-    transform:translateY(-6px);
-    box-shadow:0 15px 35px rgba(0,0,0,0.6);
+    transform:translateY(-4px);
 }
 
 .hero{
@@ -59,20 +69,20 @@ body{
     padding:120px 0;
 }
 
-h1{font-size:50px;}
-h2{color:#00eaff;margin-bottom:15px;}
-h3{margin-top:15px;color:#00eaff;}
+h1{font-size:48px;}
+h2{color:#0077ff;margin-bottom:15px;}
+h3{margin-top:15px;color:#0077ff;}
 p{margin:8px 0;line-height:1.6;}
 ul{padding-left:20px;}
 li{margin-bottom:8px;}
 
-a{color:#00eaff;text-decoration:none;}
+a{color:#0077ff;text-decoration:none;}
 a:hover{text-decoration:underline;}
 
 footer{
     text-align:center;
     padding:30px;
-    opacity:0.6;
+    color:#555;
 }
 </style>
 </head>
@@ -80,6 +90,7 @@ footer{
 <body>
 
 <canvas id="animation-canvas"></canvas>
+<div class="overlay"></div>
 
 <div class="container">
 
@@ -174,7 +185,6 @@ const images = [];
 let currentFrame = 0;
 let targetFrame = 0;
 
-/* ===== Preload Images ===== */
 for (let i = 1; i <= frameCount; i++) {
     const img = new Image();
     const frameNumber = String(i).padStart(3, '0');
@@ -194,22 +204,18 @@ window.addEventListener("scroll", () => {
     targetFrame = scrollFraction * (frameCount - 1);
 });
 
-function animate() {
-
+function animate(){
     currentFrame += (targetFrame - currentFrame) * 0.08;
     currentFrame += 0.01;
 
-    if (currentFrame >= frameCount - 1) currentFrame = 0;
+    if(currentFrame >= frameCount - 1) currentFrame = 0;
 
-    const frameIndex = Math.floor(currentFrame);
-    const img = images[frameIndex];
+    const img = images[Math.floor(currentFrame)];
 
-    if (img.complete) {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-
-        /* TRUE transparency control */
-        context.globalAlpha = 0.05;   // 🔥 VERY transparent watermark
-        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+    if(img.complete){
+        context.clearRect(0,0,canvas.width,canvas.height);
+        context.globalAlpha = 0.06;   /* LIGHT TRANSPARENT */
+        context.drawImage(img,0,0,canvas.width,canvas.height);
         context.globalAlpha = 1;
     }
 
