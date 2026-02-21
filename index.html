@@ -14,21 +14,31 @@
 }
 
 body{
-    background:linear-gradient(to bottom,#f4f8ff,#eaf1ff);
-    color:#111;
+    background:#0a0a0f;
+    color:white;
     overflow-x:hidden;
 }
 
-/* ===== CANVAS BACKGROUND ===== */
+/* ===== BACKGROUND ANIMATION ===== */
 #animation-canvas{
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    z-index:-1;
+    z-index:-2;
     pointer-events:none;
-    filter: grayscale(100%) blur(4px);
+}
+
+/* Dark cinematic overlay (VERY LIGHT) */
+.background-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.35);
+    z-index:-1;
 }
 
 /* ===== Layout ===== */
@@ -39,17 +49,20 @@ body{
     padding:80px 0;
 }
 
+/* Glass Effect */
 .section{
-    background:rgba(255,255,255,0.92);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.15);
     padding:40px;
     margin-bottom:40px;
-    border-radius:14px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.06);
-    transition:0.3s;
+    border-radius:18px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.5);
+    transition:0.4s;
 }
 
 .section:hover{
-    transform:translateY(-4px);
+    transform:translateY(-6px);
 }
 
 .hero{
@@ -57,20 +70,47 @@ body{
     padding:120px 0;
 }
 
-h1{font-size:48px;}
-h2{color:#0066ff;margin-bottom:15px;}
-h3{margin-top:15px;color:#0066ff;}
-p{margin:8px 0;line-height:1.6;}
-ul{padding-left:20px;}
-li{margin-bottom:8px;}
+h1{
+    font-size:52px;
+    letter-spacing:1px;
+}
 
-a{color:#0066ff;text-decoration:none;}
-a:hover{text-decoration:underline;}
+h2{
+    color:#00f0ff;
+    margin-bottom:15px;
+}
+
+h3{
+    margin-top:15px;
+    color:#00f0ff;
+}
+
+p{
+    margin:8px 0;
+    line-height:1.6;
+}
+
+ul{
+    padding-left:20px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+a{
+    color:#00f0ff;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
 
 footer{
     text-align:center;
     padding:30px;
-    color:#555;
+    opacity:0.7;
 }
 </style>
 </head>
@@ -78,6 +118,7 @@ footer{
 <body>
 
 <canvas id="animation-canvas"></canvas>
+<div class="background-overlay"></div>
 
 <div class="container">
 
@@ -95,11 +136,10 @@ footer{
 <div class="section">
     <h2>Professional Summary</h2>
     <p>
-        Dedicated Electronics and Communication Engineering student with a CGPA of 8.7 
-        and strong interest in embedded systems and automotive safety technologies.
-        Hands-on experience in real-time embedded and image processing projects.
-        Awarded 1st Prize in technical paper presentations.
-        Seeking internship opportunities in automotive R&D and embedded systems.
+        Dedicated Electronics and Communication Engineering student with CGPA 8.7,
+        strong interest in embedded systems and automotive safety technologies.
+        Hands-on experience in embedded and image processing projects.
+        Awarded 1st Prize in technical symposium presentations.
     </p>
 </div>
 
@@ -116,14 +156,14 @@ footer{
 
     <h3>Sleep Alert Glasses</h3>
     <ul>
-        <li>Driver drowsiness detection system for road safety.</li>
+        <li>Driver drowsiness detection system.</li>
         <li>Sensor-based alert mechanism.</li>
         <li>1st Prize at PSN College Of Engineering.</li>
     </ul>
 
     <h3>Automatic Plant Watering System</h3>
     <ul>
-        <li>Automated irrigation system using microcontroller logic.</li>
+        <li>Microcontroller-based irrigation logic.</li>
         <li>Simulated using Keil software.</li>
     </ul>
 
@@ -193,7 +233,7 @@ window.addEventListener("scroll", () => {
 
 function animate(){
     currentFrame += (targetFrame - currentFrame) * 0.08;
-    currentFrame += 0.015;
+    currentFrame += 0.02;
 
     if(currentFrame >= frameCount - 1) currentFrame = 0;
 
@@ -201,7 +241,7 @@ function animate(){
 
     if(img.complete){
         context.clearRect(0,0,canvas.width,canvas.height);
-        context.globalAlpha = 0.12;   /* Balanced visibility */
+        context.globalAlpha = 0.35;  /* 🔥 NOW CLEARLY VISIBLE */
         context.drawImage(img,0,0,canvas.width,canvas.height);
         context.globalAlpha = 1;
     }
